@@ -1,322 +1,291 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]> <html class="ie lt-ie9 lt-ie8 lt-ie7 paceSimple sidebar sidebar-fusion"> <![endif]-->
-<!--[if IE 7]> <html class="ie lt-ie9 lt-ie8 paceSimple sidebar sidebar-fusion"> <![endif]-->
-<!--[if IE 8]> <html class="ie lt-ie9 paceSimple sidebar sidebar-fusion"> <![endif]-->
-<!--[if gt IE 8]> <html class="ie paceSimple sidebar sidebar-fusion"> <![endif]-->
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.1
+Version: 3.6
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]>
+<html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html class="sidebar sidebar-fusion">
-    <!-- <![endif]-->
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <head>
-        <title><?php
-            if (isset($title)) {
-                echo $title;
-            } else {
-                echo $this->config->item('SITE_NAME');
-            }
-            ?></title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/bootstrap/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/icons/fontawesome/assets/css/font-awesome.min.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/icons/glyphicons/assets/css/glyphicons_filetypes.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/icons/glyphicons/assets/css/glyphicons_regular.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/icons/glyphicons/assets/css/glyphicons_social.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/icons/pictoicons/css/picto.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/calendar_fullcalendar/css/fullcalendar.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_bootstrap-datepicker/css/bootstrap-datepicker.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_bootstrap-timepicker/css/bootstrap-timepicker.css"/> 
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/media_owl-carousel/owl.carousel.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/media_owl-carousel/owl.theme.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/less/pages/serveStyles.css" />
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/multi-select/css/multi-select.css"/>
-        <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_jasny-fileupload/css/fileupload.css"/>
+<html lang="en" class="no-js">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8">
+    <title>Zest | Hope for the Best</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta content="" name="author">
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet"
+          type="text/css">
+    <link href="/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+    <!-- END GLOBAL MANDATORY STYLES -->
 
-        <script>if (/*@cc_on!@*/false && document.documentMode === 10) {
-                document.documentElement.className += ' ie ie10';
-            }</script>
+    <!-- END PAGE LEVEL PLUGIN STYLES -->
 
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/jquery/jquery.min.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/modernizr/modernizr.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/jquery/jquery-migrate.min.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/charts_flot/jquery.flot.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_validator/jquery-validation/dist/jquery.validate.min.js"></script>
-
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/charts_flot/plugins/jquery.flot.tooltip.min.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/components/charts_flot/flotcharts.common.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/components/charts_flot/flotchart-mixed-1.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/components/forms_elements_bootstrap-datepicker/bootstrap-datepicker.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/components/forms_elements_bootstrap-timepicker/bootstrap-timepicker.js"></script>
-        <!--<script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/calendar_fullcalendar/js/fullcalendar.min.js"></script>-->
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/components/calendar/calendar.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/multi-select/js/jquery.multi-select.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/library/multi-select/js/jquery.quicksearch.js"></script>
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/plugins/forms_elements_jasny-fileupload/js/bootstrap-fileupload.js"></script>
-
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/calendar/js/jquery-ui.js"></script>  
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/calendar/js/fullcalendar.js"></script> 
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/calendar/js/gcal.js"></script> 
-        <script src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/calendar/js/jquery.calendar.js"></script>
-        <script src="http://code.highcharts.com/highcharts.js"></script>
-        <script src="http://code.highcharts.com/modules/exporting.js"></script>
-         <link rel="stylesheet" href="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/datepicker/css/datetime.css" type="text/css" media="all" />
-
-        <script type="text/javascript" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/datepicker/js/jquery-ui.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/datepicker/js/jquery-ui-timepicker-addon.js"></script>
-        <script type="text/javascript" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/datepicker/js/jquery-ui-sliderAccess.js"></script>
-
-        <style>
-            .error {
-
-                color: rgb(255, 0, 0);
-                display: inline-block;
-                padding: 1px;
-                width: 100%;
-            }
-        </style>
-
-    </head>
-
-    <body class="">
-        <!-- Main Container Fluid -->
-        <div class="container-fluid"> 
-
-            <!-- Sidebar Menu -->
-            <div id="menu" class="hidden-print hidden-xs">
-                <div id="sidebar-fusion-wrapper"> 
-                  <!--        <input class="form-control search" type="text" placeholder="Search...">-->
-                    <!--  <div class="search-wrapper">
-                       <div class="input-group">
-                         <input type="text" class="form-control" placeholder="Search">
-                         <span class="input-group-btn">
-                         <button class="btn btn-inverse" type="button"> <i class="fa fa-search"></i> </button>
-                         </span> </div>
-                      
-                     </div>--> 
-                    <!--<div id="logoWrapper">
-                        <div class="media"> <a href="#" class="pull-left"><img src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/people/50/2.jpg" alt="" class="img-circle" ></a>
-                            <div class="media-body"> <a href="#" class="name">Adrian D.</a>
-                                <p><i class="fa fa-fw fa-circle-o text-success"></i> Online</p>
-                            </div>
-                            <div class="clearfix"></div>
-                            <a href="#" class="btn btn-xs btn-inverse "><i class="fa fa-user"></i></a> <a href="#" class="btn btn-xs btn-inverse "><i class="fa fa-clock-o"></i></a> <a href="#" class="btn btn-xs btn-inverse "><i class="fa fa-envelope"></i></a> </div>
-
-                    </div>-->
-                    <ul class="menu list-unstyled">
-                        <?php
-                        if (check_permission('overview_view')) {
-                            ?>
-                            <li class="<?php if (isset($menu) && $menu == 'dashboard') {
-                                echo "active";
-                            } ?>"> <a href="<?php echo site_url(); ?>" class="index"> <i class="fa fa-home"></i> <span>Overview</span> </a> </li>
-                            <?php
-                        }
-                        if (check_permission('manage_projects_view')) {
-                            ?>
-                            <li class="<?php if (isset($menu) && $menu == 'manage_projects') {
-                            echo "active";
-                        } ?>"> <a href="<?php echo site_url('manage_projects'); ?>"> <i class="fa fa-th-large"></i> <span>Projects Grid</span> </a> </li>
-                            <?php
-                        }
-                        if (check_permission('manage_task_view')) {
-                            ?>
-                            <li class="<?php if (isset($menu) && $menu == 'mytasks') {
-                            echo "active";
-                        } ?>"> <a href="<?php echo site_url('mytasks'); ?>"> <i class="fa fa-ticket"></i> <span>My Tasks</span> </a> </li>
-
-                                <?php
-                            }
-                            if (check_permission('manage_roles_view')) {
-                                ?>
-                            <li class="<?php if (isset($menu) && $menu == 'manage_roles') {
-                                echo "active";
-                            } ?>" > <a href="<?php echo site_url('manage_roles'); ?>" > <i class="fa fa-user"></i> <span> Manage Roles</span> </a>
-                                <?php
-                            }
-                            if (check_permission('manage_users_view')) {
-                                ?>
-                            <li class="<?php if (isset($menu) && $menu == 'manage_users') {
-                                    echo "active";
-                                } ?>" > <a href="<?php echo site_url('manage_users'); ?>" > <i class="fa fa-user"></i> <span> Manage Users</span> </a>            
-    
-                            <!--
-                           <ul class="collapse" id="menu-user-manage">
-                             <li class=""> <a href="<?php //echo site_url().'manage_roles'; ?>" class="no-ajaxify"> <i class="fa fa-lock"></i> <span>Task Wise</span> </a> </li>
-                            <li class=""> <a href="#" class="no-ajaxify"> <i class="fa fa-pencil"></i> <span>User Wise</span> </a> </li>
-                            <li class=""> <a href="#" class="no-ajaxify"> <i class="fa fa-pencil"></i> <span>Project Wise</span> </a> </li>
-                          </ul>
-                            -->
-                        </li>
-                        <?php
-}
-if (check_permission('manage_calendar_view')) {
-?>
-                        <li class="<?php if (isset($menu) && $menu == 'calendar') {
-    echo "active";
-} ?>" > <a href="<?php echo site_url('calendar'); ?>" class="calendar"> <i class="fa fa-calendar"></i> <span>Calendar</span> </a> </li>
- <?php
-                            }
-                            if (check_permission('manage_reports_view')) {
-                                ?>                       
-                        <li class="hasSubmenu"> <a href="#menu-961fc415c02658d90ce2bb9f7621a012" data-toggle="collapse"> <i class="fa fa-lock"></i> <span>Reports</span> </a>
-                            <ul class="collapse" id="menu-961fc415c02658d90ce2bb9f7621a012">
-                               <!-- <li class=""> <a href="#" class="no-ajaxify"> <i class="fa fa-lock"></i> <span>Task Wise</span> </a> </li>
-                                -->
-                                <li class=""> <a href="<?php echo site_url('manage_reports/projectwise_report');?>" class="no-ajaxify"> <i class="fa fa-pencil"></i> <span>Project Wise</span> </a> </li>
-                                <li class=""> <a href="<?php echo site_url('manage_reports/userwise_report');?>" class="no-ajaxify"> <i class="fa fa-pencil"></i> <span>User Wise</span> </a> </li>
-                            </ul>
-                        </li>
-                        <?php
-                            }
-                        ?>
-   <?php if (check_permission('excel_import_create')) {
-                                ?>
-                            <li class="<?php if (isset($menu) && $menu == 'excel_import') {
-                                echo "active";
-                            } ?>" > <a href="<?php echo site_url('excel_import'); ?>" > <i class="fa fa-user"></i> <span> Excel Import</span> </a>
-                                <?php
-                            } ?>
-                    </ul>
-                </div>
+    <!-- END PAGE STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link href="/assets/global/css/components-rounded.css" id="style_components" rel="stylesheet" type="text/css">
+    <link href="/assets/global/css/plugins.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color">
+    <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-menu-fixed" class to set the mega menu fixed  -->
+<!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
+<body class="page-header-menu-fixed">
+<!-- BEGIN HEADER -->
+<div class="page-header">
+    <!-- BEGIN HEADER TOP -->
+    <div class="page-header-top">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <div class="page-logo">
+                <a href="index.html"><img src="/assets/img/logo-tisa.jpg" alt="logo" class="logo-default"></a>
             </div>
-            <!-- // Sidebar Menu END --> 
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="menu-toggler"></a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
 
-            <!-- Content -->
-            <div id="content">
-                <div class="navbar hidden-print main navbar-default" role="navigation">
-                    <div class="user-action user-action-btn-navbar pull-right">
-                        <button class="btn btn-sm btn-navbar btn-inverse btn-stroke hidden-lg hidden-md"><i class="fa fa-bars fa-2x"></i></button>
-                    </div>
-                    <a href="<?php echo site_url('dashboard');?>" class="logo"> <img src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/logo/logo.gif" alt="Verbat" /> </a>
-                    <!--<ul class="main pull-left hidden-xs ">
-                        <li class="dropdown notif notifications hidden-xs"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <span class="badge badge-danger">5</span></a>
-                            <ul class="dropdown-menu chat media-list">
-                                <li class="media"> <a class="pull-left" href="#"><img class="media-object thumb" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/people/100/15.jpg" alt="50x50" width="50" /></a>
-                                    <div class="media-body"> <span class="label label-default pull-right">5 min</span>
-                                        <h5 class="media-heading hidden-xs">Adrian D.</h5>
-                                        <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </li>
-                                <li class="media"> <a class="pull-left" href="#"><img class="media-object thumb" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/people/100/16.jpg" alt="50x50" width="50" /></a>
-                                    <div class="media-body"> <span class="label label-default pull-right">2 days</span>
-                                        <h5 class="media-heading">Jane B.</h5>
-                                        <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </li>
-                                <li class="media"> <a class="pull-left" href="#"><img class="media-object thumb" src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/people/100/17.jpg" alt="50x50" width="50" /></a>
-                                    <div class="media-body"> <span class="label label-default pull-right">3 days</span>
-                                        <h5 class="media-heading">Andrew M.</h5>
-                                        <p class="margin-none">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div>
-                                </li>
-                                <li><a href="#" class="btn btn-primary"><i class="fa fa-list"></i> <span>View all messages</span></a></li>
-                            </ul>
-                        </li>
-                        <li class="notifications"> <a href="#"><i class="fa fa-clock-o"></i> <span class="badge badge-warning">7</span></a> </li>
-                        <li class="notifications"> <a href="#" ><i class="fa fa-user"></i> <span class="badge badge-info">2</span></a> </li>
-                    </ul>-->
-                    <ul class="main pull-right">
-                         <?php
-                        if (check_permission('manage_task_create') && $this->session->userdata('role_id') == 1) {
-                            ?>
-                        <li class="hidden-xs hidden-sm"><a href="<?php echo site_url('manage_tasks/new_task'); ?>" class="btn btn-info">Create / Update Task <i class="fa fa-fw icon-compose"></i></a></li>
-                        <?php
-                        }
-                        ?>
-                        <li class="dropdown username hidden-xs "> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo base_url($this->config->item('BACKEND_ASSETS')); ?>/images/people/35/22.jpg" class="img-circle" alt="Profile" /> <?php echo $this->session->userdata('first_name');?> <span class="caret"></span></a>
-                            <ul class="dropdown-menu pull-right">
-                                <!--<li><a href="#" class="glyphicons user"><i></i> Account</a></li>
-                                <li><a href="#" class="glyphicons envelope"><i></i>Messages</a></li>-->
-                                <li><a href="<?php echo site_url('manage_projects'); ?>" class="glyphicons settings"><i></i>Projects</a></li>
-                                <li><a href="<?php echo site_url('auth/logout'); ?>" class="glyphicons lock no-ajaxify"><i></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <!-- // END navbar -->
-                <?php /*
-                  <?php echo $this->ci_alerts->display('error'); ?> <?php echo $this->ci_alerts->display('success'); ?> <?php echo $this->ci_alerts->display('warning'); ?>
-                 */ ?>
-<?php
-if (isset($main_content)) {
-    echo $main_content;
-} else {
+                    <!-- BEGIN USER LOGIN DROPDOWN -->
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <img alt="" class="img-circle" src="/assets/img/avatar9.jpg">
+                            <span
+                                class="username username-hide-mobile"><?php echo $this->session->userdata('first_name'); ?></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
 
-    echo $this->config->item('SITE_NAME');
-}
-?>
-                <!------------------------//////////////////////////////--------------------->
-
-                <!-- Dashboard Wrapper End -->
-
+                            <!--<li>
+                                <a href="extra_lock.html">
+                                <i class="icon-lock"></i> Lock Screen </a>
+                            </li>-->
+                            <li>
+                                <a href="<?php echo site_url('auth/logout'); ?>">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
             </div>
-            <!-- // Content END from header.php-->
-
-            <div class="clearfix"></div>
-            <!-- // Sidebar menu & content wrapper END -->
-
-            <!--  <div id="footer" class="hidden-print"> 
-               
-           
-               <div class="copy">&copy; 2014 Verbat Technologies. All Rights Reserved. </div>
-               
-               
-             </div>-->
-
-            <!-- // Footer END --> 
-
+            <!-- END TOP NAVIGATION MENU -->
         </div>
-        <!-- // Main Container Fluid END --> 
+    </div>
+    <!-- END HEADER TOP -->
+    <!-- BEGIN HEADER MENU -->
+    <div class="page-header-menu">
+        <div class="container-fluid">
+            <!-- BEGIN HEADER SEARCH BOX -->
+            <form class="search-form" action="extra_search.html" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="query">
+					<span class="input-group-btn">
+					<a href="javascript:;" class="btn submit"><i class="icon-magnifier"></i></a>
+					</span>
+                </div>
+            </form>
+            <!-- END HEADER SEARCH BOX -->
+            <!-- BEGIN MEGA MENU -->
+            <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+            <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+            <div class="hor-menu ">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="<?php echo site_url('dashboard'); ?>">Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo site_url('schools'); ?>">Schools</a>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo site_url('students'); ?>">Students</a>
+                    </li>
+                    <li class="">
+                        <a href="#">Reports</a>
+                    </li>
+                    <li class="">
+                        <a href="#">Accounts</a>
+                    </li>
+
+                    <!--<li class="menu-dropdown">
+                        <a href="angularjs" target="_blank" class="tooltips" data-container="body" data-placement="bottom" data-html="true" data-original-title="AngularJS version demo">
+                        AngularJS Version </a>
+                    </li>-->
+                </ul>
+            </div>
+            <!-- END MEGA MENU -->
+        </div>
+    </div>
+    <!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+
+    <!-- BEGIN PAGE CONTENT -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <!-- BEGIN PAGE BREADCRUMB -->
+            <!-- END PAGE BREADCRUMB -->
+            <!-- BEGIN PAGE CONTENT INNER -->
+            <div class="portlet light bordered">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="icon-equalizer font-blue-hoki"></i>
+                        <span class="caption-subject font-blue-hoki bold uppercase">Add School</span>
+                        <span class="caption-helper"></span>
+                    </div>
+
+                </div>
+                <div class="portlet-body form">
+                    <!-- BEGIN FORM-->
+                    <form class="horizontal-form" action="" method="post">
+                        <div class="form-body">
+                            <!-- <h3 class="form-section">Person Info</h3>-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">School</label>
+                                        <input type="text" placeholder="School Name" class="form-control"
+                                               name="school_name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Principal</label>
+                                        <input type="text" placeholder="Principal Name" class="form-control"
+                                               name="principal_name" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Place</label>
+                                        <input type="text" placeholder="Place" class="form-control" name="place"
+                                               required>
+                                    </div>
 
 
+                                    <div class="form-group">
+                                        <label class="control-label">State</label>
+                                        <select class="form-control" name="state_id">
+                                            <option value="1">Kerala</option>
+                                            <option value="2">Tamil Nadu</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">District</label>
+                                        <select class="form-control" name="district_id">
+                                            <option value="1">Trivandrum</option>
+                                            <option value="2">Other</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                        <input type="text" placeholder="Email" class="form-control" name="email" email>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label">Contact Person</label>
+                                        <input type="text" placeholder="Contact Person Name" class="form-control" name="contact_person">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Contact Number</label>
+                                        <input type="text" placeholder="Contact Number" class="form-control" name="contact_number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Address</label>
+                                        <textarea placeholder="Address" class="form-control" name="address">
+                                        </textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Other Details</label>
+                                        <textarea placeholder="Address" class="form-control" name="details" >
+                                        </textarea>
+                                    </div>
+                                    
+                                    <div class="pull-right">
+                                        <button class="btn default" type="button">Cancel</button>
+                                        <button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
+                                    </div>
+
+                                </div>
+
+
+                    </form>
+
+                </div>
+
+
+            </div>
+
+            <!-- END FORM-->
+        </div>
+    </div>
+    <!-- END PAGE CONTENT INNER -->
+</div>
+</div>
+<!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+
+<div class="scroll-to-top">
+    <i class="icon-arrow-up"></i>
+</div>
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS (Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="/assets/global/plugins/respond.min.js"></script>
+<script src="/assets/global/plugins/excanvas.min.js"></script>
+<![endif]-->
+<script src="/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script src="/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"
+        type="text/javascript"></script>
+<script src="/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="/assets/scripts/layout.js" type="text/javascript"></script>
+<script src="/assets/scripts/demo.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
 <script>
-
-    function exportTableToCSV($table, title) {
-
-        var $rows = $('#' + $table).find('tr:has(td,th)'),
-                // Temporary delimiter characters unlikely to be typed by keyboard
-                // This is to avoid accidentally splitting the actual contents
-                tmpColDelim = String.fromCharCode(11), // vertical tab character
-                tmpRowDelim = String.fromCharCode(0), // null character
-
-                // actual delimiter characters for CSV format
-                colDelim = '","',
-                rowDelim = '"\r\n"',
-                // Grab text from table into CSV formatted string
-                csv = '"' + $rows.map(function(i, row) {
-                    var $row = $(row),
-                            $cols = $row.find('td,th');
-
-                    return $cols.map(function(j, col) {
-                        var $col = $(col),
-                                text = $col.text();
-
-                        return text.replace('"', '""'); // escape double quotes
-
-                    }).get().join(tmpColDelim);
-
-                }).get().join(tmpRowDelim)
-                .split(tmpRowDelim).join(rowDelim)
-                .split(tmpColDelim).join(colDelim) + '"',
-                // Data URI
-                csvData = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-        Highcharts.post('<?php echo base_url(); ?>export_excel.php', {
-            csv: csv,
-            title: title,
-        });
-    }
-
-
+    jQuery(document).ready(function () {
+        Metronic.init(); // init metronic core componets
+    });
 </script>
-    </body>
-
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
 </html>

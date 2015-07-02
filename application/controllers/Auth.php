@@ -7,13 +7,13 @@ class Auth extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('auth_model','admin_model');
+        $this->load->model('auth_model');
         //$this->output->enable_profiler(TRUE);
     }
 
     public function index() {
         if (logged_in()) {
-            redirect(site_url());
+            redirect(site_url('dashboard'));
         } else {
             redirect(site_url('auth/login'));
         }
@@ -22,7 +22,7 @@ class Auth extends CI_Controller {
     public function login() {
 
         if (logged_in()) {
-            redirect(site_url());
+            redirect(site_url('dashboard'));
         }
 
         $this->form_validation->set_rules('email_id', 'Email ID', 'required|trim|min_length[5]');
@@ -31,24 +31,24 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() !== false) {
             //$category_id = $this->input->post('category');
-            $res = $this->admin_model->verify_user($this->input->post('email_id'), $this->input->post('password'));
+            $res = $this->auth_model->verify_user($this->input->post('email_id'), $this->input->post('password'));
 
             
             if ($res !== false) {
                 if ($res->num_rows() > 0) {
                     $row = $res->row();
 
-                    $user_id = $row->user_id;
+                    $user_id = $row->id;
                     $user_email = $row->email_id;
-                    $first_name= $row->first_name;
+                    $name= $row->name;
                     $role_id= $row->role_id;
                    
                 }
-                $newdata = array('user_id' => $user_id, 'first_name' => $first_name,'email_id'=>$user_email, 'role_id'=>$role_id  );
+                $new_data = array('user_id' => $user_id, 'first_name' => $name,'email_id'=>$user_email, 'role_id'=>$role_id  );
 
-                $this->session->set_userdata($newdata);
+                $this->session->set_userdata($new_data);
 
-                //$this->admin_model->update_login($user_id, date('Y-m-d H:i:s', time()), $this->input->ip_address());
+                 $this->auth_model->update_login($user_id, date('Y-m-d H:i:s', time()), $this->input->ip_address());
 
                 redirect(site_url('dashboard'));
                 
@@ -61,7 +61,7 @@ class Auth extends CI_Controller {
         }
         
         
-        $this->load->view('login_view');
+        $this->load->view('templates/login_template');
 
     }
 

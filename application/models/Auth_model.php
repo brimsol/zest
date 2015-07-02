@@ -16,11 +16,11 @@ class Auth_model extends CI_Model {
     }
 
     public function verify_user($username, $password) {
+
+
         $q = $this->db->where('email_id', $username)->where('password', sha1($password))->where('deleted_status', 0)->limit(1)->get('users');
         
-       // print_r($q);
-        
-        
+
         if ($q->num_rows() > 0) {
             // person has account with us
             return $q;
@@ -74,23 +74,7 @@ class Auth_model extends CI_Model {
         $this->db->where('deleted_status', 1);
         return $this->db->get($tbl);
     }
-    
-    
-    function GetAllWorkDate($mindate = '', $maxdate = '') {
 
-
-        $this->db->select('*');
-        $this->db->from('customer_works');
-        $this->db->join('customers', 'customers.customer_id = customer_works.work_id');
-        $this->db->where('customers.deleted', '0');
-        $this->db->where('customer_works.deleted', '0');
-        if ($mindate != '' && $maxdate != '') {
-            $this->db->where("customer_works.work_starting_date BETWEEN '$mindate' AND '$maxdate'");
-        }
-        $this->db->order_by('customer_works.created_at', 'DESC');
-        //print_r($mindate);
-        return $this->db->get()->result();
-    }
 
     /**
      * Update user login details with the given info
@@ -99,11 +83,11 @@ class Auth_model extends CI_Model {
      * @param string $current_time Current time
      * @param string $ip_address User's current IP address
      */
-    function update_login($idx, $current_time, $ip_address) {
+    function update_login($id, $current_time, $ip_address) {
         $query = $this->db->update('users', array(
             'last_loggedin' => $current_time,
             'last_loggedin_ip' => $ip_address
-                ), "user_id = {$idx}");
+                ), "id = {$id}");
     }
 
 }

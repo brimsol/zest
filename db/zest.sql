@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2015 at 02:09 PM
+-- Generation Time: Jul 02, 2015 at 02:43 PM
 -- Server version: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -115,14 +115,25 @@ CREATE TABLE IF NOT EXISTS `states` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `role_id` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_loggedin` datetime DEFAULT NULL,
+  `last_loggedin_ip` varchar(225) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deleted_status` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  UNIQUE KEY `users_email_unique` (`email_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email_id`, `password`, `role_id`, `remember_token`, `last_loggedin`, `last_loggedin_ip`, `created_at`, `updated_at`, `deleted_status`) VALUES
+(1, 'Administrator', 'admin@zestedu.in', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1', NULL, '2015-07-02 13:40:38', '127.0.0.1', '2015-07-01 18:30:00', '2015-07-01 18:30:00', '0');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
