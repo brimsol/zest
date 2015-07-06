@@ -198,6 +198,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <script src="/assets/scripts/layout.js" type="text/javascript"></script>
 <script src="/assets/scripts/demo.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
+<?php
+if (isset($js) && count($js) > 0) {
+
+    foreach ($js as $j) {
+
+        echo '<script src="' . base_url() . 'assets/scripts/' . $j . '.js"></script>';
+    }
+}
+?>
 <script>
     jQuery(document).ready(function () {
         Metronic.init(); // init metronic core componets

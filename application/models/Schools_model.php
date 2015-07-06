@@ -7,9 +7,10 @@
  * @category Controller
  * @author AMI 
  * */
-class Schools_model extends CI_Model {
+class Schools_model extends MY_Model {
 
-
+    public $_table = 'schools';
+    public $primary_key = 'id';
 
     public function __construct() {
         $this->output->enable_profiler(TRUE);
@@ -18,10 +19,13 @@ class Schools_model extends CI_Model {
         $this->_table_states = 'states';
     }
 
-    function get_all() {
+    function get_schools() {
 
-        return $this->db->join($this->_table_districts, $this->_table_districts.'.id ='.$this->_table_schools.'.district_id')
-                ->join($this->_table_states, $this->_table_states.'.id ='.$this->_table_schools.'.state_id')->get($this->_table_schools)
+        return $this->db
+                ->join($this->_table_districts, $this->_table_districts.'.id ='.$this->_table_schools.'.district_id','left')
+                ->join($this->_table_states, $this->_table_states.'.id ='.$this->_table_schools.'.state_id','left')
+                ->where('deleted','0')
+                ->get($this->_table_schools)
                 ->result();
     }
 
