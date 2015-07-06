@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.4
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2015 at 02:43 PM
+-- Generation Time: Jul 06, 2015 at 04:44 AM
 -- Server version: 5.6.15-log
 -- PHP Version: 5.5.8
 
@@ -30,7 +30,14 @@ CREATE TABLE IF NOT EXISTS `districts` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `district_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `districts`
+--
+
+INSERT INTO `districts` (`id`, `district_name`) VALUES
+(1, 'Trivandrum');
 
 -- --------------------------------------------------------
 
@@ -86,13 +93,20 @@ CREATE TABLE IF NOT EXISTS `schools` (
   `contact_person` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
   `contact_number` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `details` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `deleted` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `schools_state_id_foreign` (`state_id`),
   KEY `schools_district_id_foreign` (`district_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `schools`
+--
+
+INSERT INTO `schools` (`id`, `school_name`, `principal_name`, `place`, `state_id`, `district_id`, `email`, `address`, `contact_person`, `contact_number`, `details`, `deleted`, `created_at`, `updated_at`) VALUES
+(1, 'ABCD', 'EFGHO', 'Evidayo', 1, 1, NULL, NULL, NULL, '98784565', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -104,7 +118,14 @@ CREATE TABLE IF NOT EXISTS `states` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `state_name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `states`
+--
+
+INSERT INTO `states` (`id`, `state_name`) VALUES
+(1, 'Kerala');
 
 -- --------------------------------------------------------
 
@@ -133,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email_id`, `password`, `role_id`, `remember_token`, `last_loggedin`, `last_loggedin_ip`, `created_at`, `updated_at`, `deleted_status`) VALUES
-(1, 'Administrator', 'admin@zestedu.in', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1', NULL, '2015-07-02 13:40:38', '127.0.0.1', '2015-07-01 18:30:00', '2015-07-01 18:30:00', '0');
+(1, 'Administrator', 'admin@zestedu.in', '7c4a8d09ca3762af61e59520943dc26494f8941b', '1', NULL, '2015-07-05 20:33:29', '127.0.0.1', '2015-07-01 18:30:00', '2015-07-01 18:30:00', '0');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
