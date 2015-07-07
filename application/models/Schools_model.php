@@ -19,7 +19,7 @@ class Schools_model extends MY_Model {
         $this->_table_states = 'states';
     }
 
-    function get_schools() {
+    function getAllSchools() {
 
         return $this->db
                 ->join($this->_table_districts, $this->_table_districts.'.id ='.$this->_table_schools.'.district_id','left')

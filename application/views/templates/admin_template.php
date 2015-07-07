@@ -152,8 +152,8 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END PAGE BREADCRUMB -->
 
             <?php
-            if (isset($main_content)) {
-                echo $main_content;
+            if (isset($page)) {
+               $this->load->view($page);
             }
             ?>
 

@@ -20,12 +20,12 @@ class Schools extends CI_Controller {
 
     public function index() {
 
-        $data['schools'] = $this->schools_model->get_all();
+        $data['schools'] = $this->schools_model->getAllSchools();
         $data['menu_active'] = 'schools';
         //$data['links'] = $this->pagination->create_links();
         $data['title'] = "List of Schools";
 
-        $data['main_content'] = $this->load->view('schools/list_view', $data, true);
+        $data['page'] = 'schools/list_view';
         $this->load->view('templates/admin_template', $data);
     }
 
@@ -78,19 +78,6 @@ class Schools extends CI_Controller {
                 redirect("manage_projects");
             } else {
 
-                $assigned_users = $this->input->post('assigned_user_id');
-                if (count($assigned_users) > 0) {
-
-                    $as_user = array();
-
-                    foreach ($assigned_users as $key => $value) {
-
-
-                        $as_user[] = array('project_id' => $project_id, 'user_id' => $value);
-                    }
-
-                    $this->projects_model->add_assign_users($as_user);
-                }
 
                 $this->ci_alerts->set('success', 'Saved Successfully');
                 redirect("manage_projects");
@@ -98,14 +85,15 @@ class Schools extends CI_Controller {
         } else {
             //display the create user form
             //set the flash data error message if there is one
-            $data['users'] = $this->users_model->get_all();
-            $data['project_types'] = $this->projects_model->get_all_project_types();
-            $data['clients'] = $this->projects_model->get_all_clients();
+            //$data['users'] = $this->users_model->get_all();
+            //$data['project_types'] = $this->projects_model->get_all_project_types();
+            //$data['clients'] = $this->projects_model->get_all_clients();
 
-            $data['action_url'] = 'manage_projects/create';
-            $data['menu'] = 'manage_projects';
-            $data['main_content'] = $this->load->view('manage_projects/create_view', $data, true);
+            //$data['action_url'] = 'manage_projects/create';
+            //$data['menu'] = 'manage_projects';
+            $data['page'] = 'schools/create_view';
             $this->load->view('templates/admin_template', $data);
+
         }
     }
 
