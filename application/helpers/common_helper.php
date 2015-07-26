@@ -108,4 +108,10 @@ function add_date_only($given_date = '', $srttotime = false) {
     }
 }
 
-
+function is_same($value1, $value2) {
+    if ($value1 == $value2) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}

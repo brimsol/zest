@@ -1,67 +1,121 @@
-<div class="innerLR">
-      <h1 class="">Update Milestone</h1>
-      <div class="innerTB">
-        
-        <div class="row">
-        <div class="col-lg-12">
-        	<div class="widget innerAll half widget-primary widget-small">
-             <?php if($milestone -> num_rows() > 0){ $m = $milestone->row(); ?>
-                    <form class="form-horizontal form_padtop" method="post">
-            
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="">Milestone Name</label>
-                    <div class="col-sm-4">
-                        <input type="text"  name="milestone_name" class="form-control" value="<?php echo $m->milestone_name;?>">
-                         <?php echo form_error('milestone_name'); ?>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for="">Project Name</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" name="project_id" type="text" id="department">
-                                    <?php foreach ($projects->result() as $project) { ?>
-                                        <option value="<?php echo $project->project_id; ?>" <?php if($m->project_id == $project->project_id){echo "selected='true'";}?>><?php echo $project->project_name; ?></option>
-                                    <?php } ?>  
-                                   
-                                </select>
-                         <?php echo form_error('project_id'); ?>
-                    </div>
-                </div>
-                
-				<div class="form-group">
-                    <label class="col-sm-2 control-label" for="to">Priority</label>
-                    <div class="col-sm-4">
-                    	 <select class="form-control" name="milestone_priority" type="text" id="department">
-                             <option value="">Select</option>
-                              
-                                    <?php if(count($this->config->item('PRIORIY'))){
-                                
-                                foreach($this->config->item('PRIORIY') as $key=>$value){ ?>
-                                    
-                                    <option value="<?php echo $key;?>"  <?php if($m->milestone_priority == $key){echo "selected='true'";}?>><?php echo $value;?></option>
-                               
-                                <?php } }?>
-                                </select>
-                         <?php echo form_error('milestone_priority'); ?>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="col-sm-2 control-label" for=""></label>
-                    <div class="col-sm-4">
-                    	<input type="submit" class="btn btn-primary" value="Submit">
-                        <a href="#" class="btn btn-inverse">Cancel</a>
-                    </div>
-                </div>
-                
-                <div class="clearfix"></div>
-                
-            </form>    
-                 <?php }else{ echo '<div class="alert alert-danger">No Records Found !!!</div>'; } ?>
-            </div><!--widget-->
+<div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="icon-equalizer font-blue-hoki"></i>
+            <span class="caption-subject font-blue-hoki bold uppercase">Update School</span>
+            <span class="caption-helper"></span>
         </div>
-        </div>
-        
+
     </div>
+    <div class="portlet-body form">
+
+        <?php if (count($school_data) > 0) {?>
+
+
+
+        <!-- BEGIN FORM-->
+        <form class="horizontal-form"  method="post">
+            <div class="form-body">
+                <!-- <h3 class="form-section">Person Info</h3>-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">School</label>
+                            <input type="text" placeholder="School Name" class="form-control"
+                                   name="school_name" value="<?php echo set_value('school_name',$school_data->school_name); ?>" required>
+                            <?php echo form_error('school_name'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Principal</label>
+                            <input type="text" placeholder="Principal Name" class="form-control"
+                                   name="principal_name" value="<?php echo set_value('principal_name',$school_data->principal_name); ?>"  required>
+                            <?php echo form_error('principal_name'); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Place</label>
+                            <input type="text" placeholder="Place" class="form-control" name="place" value="<?php echo set_value('place',$school_data->place); ?>"
+                                   required>
+                            <?php echo form_error('place'); ?>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label">State</label>
+                            <select class="form-control" name="state_id">
+                                <option value="" <?php echo  set_select('state_id', ''); ?>>Select State</option>
+
+                                <?php if(count($states) > 0){foreach ($states as $state) {?>
+
+                                    <option value="<?php echo $state->id;?>"  <?php echo  set_select('state_id', $state->id,is_same($state->id,$school_data->state_id)); ?>><?php echo $state->state_name;?></option>
+
+                                <?php } }?>
+
+                            </select>
+                            <?php echo form_error('state_id'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">District</label>
+                            <select class="form-control" name="district_id">
+                                <option value="" <?php echo  set_select('district_id', ''); ?>>Select State</option>
+
+                                <?php if(count($districts) > 0){foreach ($districts as $district) {?>
+
+                                    <option value="<?php echo $district->id;?>"  <?php echo  set_select('district_id', $district->id,is_same($district->id,$school_data->district_id)); ?>><?php echo $district->district_name;?></option>
+
+                                <?php } }?>
+                            </select>
+                            <?php echo form_error('district_id'); ?>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="control-label">Email</label>
+                            <input type="text" placeholder="Email" class="form-control" name="email" value="<?php echo set_value('email',$school_data->email); ?>" email>
+                            <?php echo form_error('email'); ?>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Contact Person</label>
+                            <input type="text" placeholder="Contact Person Name" class="form-control" value="<?php echo set_value('contact_person',$school_data->contact_person); ?>" name="contact_person">
+                            <?php echo form_error('contact_person'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Contact Number</label>
+                            <input type="text" placeholder="Contact Number" class="form-control" value="<?php echo set_value('contact_number',$school_data->contact_number); ?>" name="contact_number">
+                            <?php echo form_error('contact_number'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Address</label>
+                                        <textarea placeholder="Address" class="form-control" name="address"><?php echo set_value('address',$school_data->address); ?>
+                                        </textarea>
+                            <?php echo form_error('address'); ?>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Other Details</label>
+                                        <textarea placeholder="Address" class="form-control"  name="details" ><?php echo set_value('details',$school_data->details); ?>
+                                        </textarea>
+                            <?php echo form_error('details'); ?>
+                        </div>
+
+                        <div class="pull-right">
+                            <button class="btn default" type="button">Cancel</button>
+                            <button class="btn blue" type="submit"><i class="fa fa-check"></i> Save</button>
+                        </div>
+
+                    </div>
+
+
+        </form>
+        <?php } else { ?>
+            <div class="alert alert-danger">
+                No record found.
+            </div>
+        <?php } ?>
+    </div>
+
+
 </div>

@@ -14,14 +14,21 @@ class Schools extends CI_Controller {
         if (!logged_in()) {
             redirect(site_url('auth/login'));
         }
-        $this->load->model('schools_model');
+        $this->load->model('school_model');
+        $this->load->model('district_model');
+        $this->load->model('state_model');
+
+        $this->_created_at = date("Y-m-d H:i:s");
+        $this->_created_by = $this->session->userdata('user_id');
+        $this->_updated_at = date("Y-m-d H:i:s");
+        $this->_updated_by = $this->session->userdata('user_id');
 
     }
 
     public function index() {
 
-        $data['schools'] = $this->schools_model->getAllSchools();
-        $data['menu_active'] = 'schools';
+        $data['schools'] = $this->school_model->getAllSchools();
+        $data['menu'] = 'schools';
         //$data['links'] = $this->pagination->create_links();
         $data['title'] = "List of Schools";
 
@@ -35,19 +42,17 @@ class Schools extends CI_Controller {
     function create() {
 
 
-        $this->data['title'] = "Create Project";
-
-        $this->form_validation->set_rules('project_name', 'Project Name', "required|trim|xss_clean|max_length[100]");
-        $this->form_validation->set_rules('project_type_id', 'Proejct Type', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('assigned_user_id[]', 'Assigned Users', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('client_id', 'Client Name', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('estimated_start_date', 'Estimated Start date', 'required|trim|xss_clean');
-        //$this->form_validation->set_rules('duration', 'Duration', 'required|trim|xss_clean|max_length[100]|numeric');
-        $this->form_validation->set_rules('estimated_end_date', 'Estimated end date', 'required|trim|xss_clean');
-        $this->form_validation->set_rules('short_description', 'Short description', 'required|trim|xss_clean|max_length[300]');
-        $this->form_validation->set_rules('description', 'Description', 'required|trim|xss_clean|max_length[500]');
-        $this->form_validation->set_rules('project_progress', 'Project progress', 'required|trim|xss_clean|less_than_equal_to[100]');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->form_validation->set_rules('school_name', 'School Name', "required|trim|max_length[150]");
+        $this->form_validation->set_rules('principal_name', 'Pricipal Name', 'required|trim|max_length[150]');
+        $this->form_validation->set_rules('place', 'Place', 'required|trim|max_length[150]');
+        $this->form_validation->set_rules('state_id', 'State', 'required');
+        $this->form_validation->set_rules('district_id', 'Disctrict', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'valid_email');
+        $this->form_validation->set_rules('address', 'Address', 'max_length[250]');
+        $this->form_validation->set_rules('contact_person', 'Contact Person', 'max_length[150]');
+        $this->form_validation->set_rules('contact_number', 'Contact Number', 'required|max_length[12]');
+        $this->form_validation->set_rules('details', 'Details', 'trim|max_length[250]');
+        $this->form_validation->set_error_delimiters('<span class="help-block has-error">', '</span>');
 
 
 
@@ -57,40 +62,38 @@ class Schools extends CI_Controller {
              * Create data to insert
              */
             $insert_data = array(
-                'project_name' => $this->input->post('project_name'),
-                'project_type_id' => $this->input->post('project_type_id'),
-                'client_id' => $this->input->post('client_id'),
-                'project_mode' => $this->input->post('project_mode'),
-                'estimated_start_date' => add_date($this->input->post('estimated_start_date')),
-                'duration' => $this->input->post('duration'),
-                'estimated_end_date' => add_date($this->input->post('estimated_end_date')),
-                'short_description' => $this->input->post('short_description'),
-                'description' => $this->input->post('description'),
-                'project_progress' => $this->input->post('project_progress'),
-                'created_at' => date("Y-m-d H:i:s"),
-                'created_by' => $this->session->userdata('user_id')
+                'school_name' => $this->input->post('school_name'),
+                'principal_name' => $this->input->post('principal_name'),
+                'place' => $this->input->post('place'),
+                'state_id' => $this->input->post('state_id'),
+                'district_id' => add_date($this->input->post('district_id')),
+                'email' => $this->input->post('email'),
+                'address' => add_date($this->input->post('address')),
+                'contact_person' => $this->input->post('contact_person'),
+                'contact_number' => $this->input->post('contact_number'),
+                'details' => $this->input->post('details'),
+                'created_at' => $this->_created_at,
+                'created_by' => $this->_created_by
             );
 
-            $project_id = $this->projects_model->create($insert_data);
+            $project_id = $this->school_model->insert($insert_data);
             if (!$project_id) {
 
                 $this->ci_alerts->set('error', 'Sorry ! failed to save, please try again');
-                redirect("manage_projects");
+                redirect("schools");
             } else {
 
 
                 $this->ci_alerts->set('success', 'Saved Successfully');
-                redirect("manage_projects");
+                redirect("schools");
             }
         } else {
-            //display the create user form
-            //set the flash data error message if there is one
-            //$data['users'] = $this->users_model->get_all();
-            //$data['project_types'] = $this->projects_model->get_all_project_types();
-            //$data['clients'] = $this->projects_model->get_all_clients();
 
-            //$data['action_url'] = 'manage_projects/create';
-            //$data['menu'] = 'manage_projects';
+            $data['menu'] = 'schools';
+
+            $data['states'] = $this->state_model->get_all();
+            $data['districts'] = $this->district_model->get_all();
+
             $data['page'] = 'schools/create_view';
             $this->load->view('templates/admin_template', $data);
 
@@ -100,21 +103,20 @@ class Schools extends CI_Controller {
     /**
      * Update Users
      */
-    function update($project_id) {
-        $this->data['title'] = "Update Project";
+    function update($school_id) {
 
+        $this->form_validation->set_rules('school_name', 'School Name', "required|trim|max_length[150]");
+        $this->form_validation->set_rules('principal_name', 'Pricipal Name', 'required|trim|max_length[150]');
+        $this->form_validation->set_rules('place', 'Place', 'required|trim|max_length[150]');
+        $this->form_validation->set_rules('state_id', 'State', 'required');
+        $this->form_validation->set_rules('district_id', 'Disctrict', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'valid_email');
+        $this->form_validation->set_rules('address', 'Address', 'max_length[250]');
+        $this->form_validation->set_rules('contact_person', 'Contact Person', 'max_length[150]');
+        $this->form_validation->set_rules('contact_number', 'Contact Number', 'required|max_length[12]');
+        $this->form_validation->set_rules('details', 'Details', 'trim|max_length[250]');
+        $this->form_validation->set_error_delimiters('<span class="help-block has-error">', '</span>');
 
-        $this->form_validation->set_rules('project_name', 'Project Name', "required|trim|xss_clean|max_length[100]");
-        $this->form_validation->set_rules('project_type_id', 'Proejct Type', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('assigned_user_id[]', 'Assigned Users', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('client_id', 'Client Name', 'required|trim|xss_clean|numeric');
-        $this->form_validation->set_rules('estimated_start_date', 'Estimated Start date', 'required|trim|xss_clean');
-        //$this->form_validation->set_rules('duration', 'Duration', 'required|trim|xss_clean|max_length[100]|numeric');
-        $this->form_validation->set_rules('estimated_end_date', 'Estimated end date', 'required|trim|xss_clean');
-        $this->form_validation->set_rules('short_description', 'Short description', 'required|trim|xss_clean|max_length[300]');
-        $this->form_validation->set_rules('description', 'Description', 'required|trim|xss_clean|max_length[500]');
-        $this->form_validation->set_rules('project_progress', 'Project progress', 'required|trim|xss_clean|less_than_equal_to[100]');
-        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 
 
@@ -124,64 +126,41 @@ class Schools extends CI_Controller {
              * Create data to insert
              */
             $insert_data = array(
-                'project_name' => $this->input->post('project_name'),
-                'project_type_id' => $this->input->post('project_type_id'),
-                'client_id' => $this->input->post('client_id'),
-                'project_mode' => $this->input->post('project_mode'),
-                'estimated_start_date' => add_date($this->input->post('estimated_start_date')),
-                'duration' => $this->input->post('duration'),
-                'estimated_end_date' => add_date($this->input->post('estimated_end_date')),
-                'short_description' => $this->input->post('short_description'),
-                'description' => $this->input->post('description'),
-                'project_progress' => $this->input->post('project_progress'),
-                'updated_at' => date("Y-m-d H:i:s"),
-                'updated_by' => $this->session->userdata('user_id')
+                'school_name' => $this->input->post('school_name'),
+                'principal_name' => $this->input->post('principal_name'),
+                'place' => $this->input->post('place'),
+                'state_id' => $this->input->post('state_id'),
+                'district_id' => add_date($this->input->post('district_id')),
+                'email' => $this->input->post('email'),
+                'address' => add_date($this->input->post('address')),
+                'contact_person' => $this->input->post('contact_person'),
+                'contact_number' => $this->input->post('contact_number'),
+                'details' => $this->input->post('details'),
+                'updated_at' => $this->_created_at,
+                'updated_by' => $this->_created_by
             );
 
 
 
-            if ($this->projects_model->update($project_id, $insert_data)) {
-                $assigned_users = $this->input->post('assigned_user_id');
-                if (count($assigned_users) > 0) {
+            if ($this->school_model->update($school_id, $insert_data)) {
 
-                    $as_user = array();
-
-                    foreach ($assigned_users as $key => $value) {
-
-
-                        $as_user[] = array('project_id' => $project_id, 'user_id' => $value);
-                    }
-                    $this->projects_model->del_assign_users($project_id);
-                    $this->projects_model->add_assign_users($as_user);
-                }
                 $this->ci_alerts->set('success', 'Updated Successfully');
-                redirect("manage_projects");
+                redirect("schools");
             } else {
 
                 $this->ci_alerts->set('error', 'Sorry ! failed to save, please try again');
-                redirect("manage_projects");
+                redirect("schools");
             }
         } else {
-            //display the create user form
-            //set the flash data error message if there is one
-            $data['users'] = $this->users_model->get_all();
-            $data['project_types'] = $this->projects_model->get_all_project_types();
-            $data['clients'] = $this->projects_model->get_all_clients();
 
-            $data['project'] = $this->projects_model->get_one($project_id);
-            $asgd_users = $this->projects_model->get_assigned_users($project_id);
-            $asu = array();
-            if (count($asgd_users->result()) > 0) {
+            $data['menu'] = 'schools';
 
-                foreach ($asgd_users->result() as $au) {
+            $data['states'] = $this->state_model->get_all();
+            $data['districts'] = $this->district_model->get_all();
 
-                    $asu[] = $au->user_id;
-                }
-            }
-            $data['assigned_users'] = $asu;
-            $data['action_url'] = 'manage_projects/create';
-            $data['menu'] = 'manage_projects';
-            $data['main_content'] = $this->load->view('manage_projects/update_view', $data, true);
+            $data['school_data'] = $this->school_model->get($school_id);
+
+            $data['page'] = 'schools/update_view';
             $this->load->view('templates/admin_template', $data);
         }
     }
@@ -214,18 +193,21 @@ class Schools extends CI_Controller {
     public function delete($user_id) {
 
         $insert_data = array(
-            'deleted_status' => 1,
-            'updated_at' => date("Y-m-d H:i:s"),
-            'updated_by' => $this->session->userdata('user_id'));
+            'deleted' => 1,
+            'updated_at' => $this->_created_at,
+            'updated_by' => $this->_created_by
 
-        if ($this->users_model->update($user_id, $insert_data)) {
+        );
+
+        if ($this->school_model->update($user_id, $insert_data)) {
 
             $this->ci_alerts->set('success', 'Deleted Successfully');
-            redirect("manage_users");
+            redirect("schools");
+
         } else {
 
             $this->ci_alerts->set('error', 'Sorry ! Deleted failed, please try again');
-            redirect("manage_users");
+            redirect("schools");
         }
     }
 

@@ -4,7 +4,7 @@
             <i class="fa fa-cogs font-green-sharp"></i>
             <span class="caption-subject font-green-sharp bold uppercase">Schools</span>
         </div>
-        <button class="btn green pull-right" type="button"><i class="fa fa-cogs"></i> Add School</button>
+        <a href="<?php echo site_url('schools/create');?>" class="btn green pull-right" type="button"><i class="fa fa-cogs"></i> Add School</a>
     </div>
     <div class="portlet-body">
         <div class="table-responsive">
@@ -26,6 +26,9 @@
                     </th>
                     <th>
                         Contact Number
+                    </th>
+                    <th>
+                        Action
                     </th>
 
                 </tr>
@@ -49,6 +52,11 @@
                     </td>
                     <td>
                         <?php  echo $school->contact_number;?>
+                    </td>
+                    <td>
+                        <a href="<?php echo site_url('schools/update/'.$school->id);?>" class="btn btn-info btn-sm btn-icon" title="Edit"><i class="fa fa-edit"></i></a>
+
+                        <a href="<?php echo site_url('schools/delete/'.$school->id);?>" onclick = "return confirm('Are you sure ?');" class="btn btn-danger btn-sm btn-icon" title="Delete"><i class="fa fa-trash"></i></a>
                     </td>
 
                 </tr>

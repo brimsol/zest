@@ -46,6 +46,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="/assets/favicon.ico">
+    <style>.has-error{color:red;}</style>
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
@@ -114,16 +115,16 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
             <div class="hor-menu ">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li class="<?php echo isset($menu) && $menu == 'dashboard' ? 'active' : '';?>">
                         <a href="<?php echo site_url('dashboard'); ?>">Dashboard</a>
                     </li>
-                    <li class="">
+                    <li class="<?php echo isset($menu) && $menu == 'schools' ? 'active' : '';?>">
                         <a href="<?php echo site_url('schools'); ?>">Schools</a>
                     </li>
-                    <li class="">
-                        <a href="<?php echo site_url('students'); ?>">Students</a>
+                    <li class="<?php echo isset($menu) && $menu == 'students' ? 'active' : '';?>">
+                        <a href="#">Students</a>
                     </li>
-                    <li class="">
+                    <li class="<?php echo isset($menu) && $menu == 'reports' ? 'active' : '';?>">
                         <a href="#">Reports</a>
                     </li>
                     <li class="">
