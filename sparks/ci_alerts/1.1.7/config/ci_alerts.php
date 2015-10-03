@@ -22,14 +22,14 @@
  */
 $config['before_all'] = '';
 $config['before_each'] = '';
-$config['before_error'] = '<div class="col-lg-12"><div class="alert alert_div alert-danger alert-dismissable"><i class="fa fa-exclamation-triangle"></i> ';
-$config['before_success'] = '<div class="col-lg-12"><div class="alert alert_div alert-success alert-dismissable"><i class="fa fa-check"></i> ';
-$config['before_warning'] = '<div class="col-lg-12"><div class="alert alert_div alert-warning alert-dismissable"><i class="fa fa-check"></i> ';
+$config['before_error'] = '<div class="alert alert-danger alert-dismissable">';
+$config['before_success'] = '<div class="alert alert-success alert-dismissable">';
+$config['before_warning'] = '<div class="alert alert-warning alert-dismissable">';
 $config['before_info'] = '';
 $config['before_no_type'] = '<div class="alert alert-info fade in"><a class="close" href="#" data-dismiss="alert">&times;</a>';
 
 $config['after_all'] = '';
-$config['after_each'] = '<button class="close" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button></div></div><!--alert-->';
+$config['after_each'] = '<button class="close" type="button" data-dismiss="alert"><i class="fa fa-times"></i></button></div>';
 $config['after_error'] = '';
 $config['after_success'] = '';
 $config['after_warning'] = '';

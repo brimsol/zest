@@ -11,7 +11,7 @@
  * @filesource
  */
  
-$config['SITE_NAME'] = 'PM Dashboard'; // Site title
+$config['SITE_NAME'] = 'Zest Educare - Dashboard'; // Site title
 //$config['PATH_SEPERATOR'] = ''; // Site title
 //$config['SITE_PATH'] = $_SERVER['DOCUMENT_ROOT'].$config['PATH_SEPERATOR'].'framework'; // Diractory path to the site root
 
@@ -72,5 +72,12 @@ $config['TASKSTATUS'] = array(1=>'Scheduled',2=>'In Progress',3=>'Completed');
 //Pagination
 
 $config['PROJECTGRID_PERPAGE'] = '4';
+
+//Product upload config
+$config['CANDIDATE_UPLOAD_PATH'] = 'uploads/candidates'; ///events
+$config['CANDIDATE_UPLOAD_TYPES'] = 'xls|xlsx';
+$config['CANDIDATE_UPLOAD_SIZE_LIMIT'] = '10000';
+
+
 /* End of file site.constants.php */
 /* Location: ./application/config/site.constants.php */

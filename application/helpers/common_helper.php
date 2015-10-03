@@ -5,10 +5,11 @@
  */
 if (!function_exists('logged_in')) {
 
-    function logged_in() {
-        $CI = & get_instance();
+    function logged_in()
+    {
+        $CI = &get_instance();
 
-        return (bool) $CI->session->userdata('user_id');
+        return (bool)$CI->session->userdata('user_id');
     }
 
 }
@@ -19,10 +20,11 @@ if (!function_exists('logged_in')) {
 
 if (!function_exists('is_admin')) {
 
-    function is_admin() {
-        $CI = & get_instance();
+    function is_admin()
+    {
+        $CI = &get_instance();
 
-        if ($CI->session->userdata('user_type') == '1' || $CI->session->userdata('user_type') == '3') {
+        if ($CI->session->userdata('role_id') == '1') {
 
             return true;
         } else {
@@ -39,7 +41,8 @@ if (!function_exists('is_admin')) {
  * @return string
  */
 
-function show_date($timestamp = '', $format = 'd-m-Y H:i') {
+function show_date($timestamp = '', $format = 'd-m-Y')
+{
     if ($timestamp == '' || $timestamp == '0000-00-00 00:00:00' || $timestamp == '0000-00-00') {
         return '';
     }
@@ -57,7 +60,8 @@ function show_date($timestamp = '', $format = 'd-m-Y H:i') {
  * @param bool $srttotime
  * @return bool|string
  */
-function add_date($given_date = '', $srttotime = false) {
+function add_date($given_date = '', $srttotime = false)
+{
 
     if ($given_date == '') {
         return '0000-00-00 00:00:00';
@@ -85,7 +89,8 @@ function add_date($given_date = '', $srttotime = false) {
  * @param bool $srttotime
  * @return bool|string
  */
-function add_date_only($given_date = '', $srttotime = false) {
+function add_date_only($given_date = '', $srttotime = false)
+{
 
     if ($given_date == '') {
         return '0000-00-00';
@@ -108,10 +113,42 @@ function add_date_only($given_date = '', $srttotime = false) {
     }
 }
 
-function is_same($value1, $value2) {
+function is_same($value1, $value2)
+{
     if ($value1 == $value2) {
         return TRUE;
     } else {
         return FALSE;
     }
 }
+
+function is_grade_count($db_grade, $given_grade)
+{
+    if (isset($db_grade[$given_grade])) {
+        return $db_grade[$given_grade]['candidate_count'];
+    } else {
+        return 0;
+    }
+}
+
+function is_grade_amount($db_grade, $given_grade)
+{
+    if (isset($db_grade[$given_grade])) {
+        return $db_grade[$given_grade]['amount'];
+    } else {
+        return 0;
+    }
+}
+
+function get_amountxcount($count, $amount)
+{
+    $total = array();
+    foreach ($count as $key=>$value) {
+        $total[] = $value * $amount[$key];
+    }
+
+    return $total;
+}
+
+
+

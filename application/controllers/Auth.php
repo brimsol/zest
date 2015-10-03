@@ -13,7 +13,7 @@ class Auth extends CI_Controller {
 
     public function index() {
         if (logged_in()) {
-            redirect(site_url('dashboard'));
+            redirect(site_url('admin/dashboard'));
         } else {
             redirect(site_url('auth/login'));
         }
@@ -22,11 +22,12 @@ class Auth extends CI_Controller {
     public function login() {
 
         if (logged_in()) {
-            redirect(site_url('dashboard'));
+            redirect(site_url('admin/dashboard'));
         }
 
         $this->form_validation->set_rules('email_id', 'Email ID', 'required|trim|min_length[5]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+        $this->form_validation->set_error_delimiters('<span class="help-block has-error">', '</span>');
         
 
         if ($this->form_validation->run() !== false) {
@@ -50,7 +51,7 @@ class Auth extends CI_Controller {
 
                  $this->auth_model->update_login($user_id, date('Y-m-d H:i:s', time()), $this->input->ip_address());
 
-                redirect(site_url('dashboard'));
+                redirect(site_url('admin/dashboard'));
                 
             } else {
                 
